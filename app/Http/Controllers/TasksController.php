@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Task;
 use Illuminate\Http\Request;
 
 class TasksController extends Controller
 {
     public function index()
     {
-        return view("tasks.index");
+        $tasks = Task::orderBy('id', 'ASC')->get();
+        $data = compact('tasks');
+        return view("tasks.index", $data);
     }
 
 }
