@@ -16,3 +16,4 @@ Route::get('/welcome', function () {
 });
 
 Route::get('/', ['as' => 'task.index', 'uses' => 'TasksController@index']);
+Route::get('/article', ['as' => 'task.index', 'uses' => 'ArticlesController@index']);
