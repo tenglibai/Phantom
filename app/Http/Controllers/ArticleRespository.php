@@ -9,15 +9,15 @@
 namespace App\Http\Controllers;
 
 
-class ArticleREspository
+class ArticleRespository
 {
 
     public function all()
     {
         // simulate bug
-        if(true){
-            return null;
-        }
+//        if(true){
+//            return null;
+//        }
         return ['article 1', 'article 2'];
     }
 }
