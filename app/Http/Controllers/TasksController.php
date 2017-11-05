@@ -19,11 +19,24 @@ class TasksController extends Controller
         return view("tasks.index", $data);
     }
 
-    public function create(CreateTaskRequest $request)
+     public function store(CreateTaskRequest $request)
     {
         $input = $request->all();
         $input['done'] = $this::UNDONE;
         Task::create($input);
-        return redirect('/');
+        return redirect('/tasks');
+    }
+
+    public function edit($id)
+    {
+        $task = Task::findOrFail($id);
+        return view('tasks.edit', compact('task'));
+    }
+
+    public function update(CreateTaskRequest $request, $id)
+    {
+        $task = Task::findOrfail($id);
+        $task->update($request->all());
+        return redirect('/tasks');
     }
 }

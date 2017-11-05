@@ -1,6 +1,6 @@
 @extends('layout.master')
 
-@section('title','todo 范例程序')
+@section('title','清单')
 
 @section('content')
     <div class="container">
@@ -10,20 +10,9 @@
                     建立新的Task
                 </div>
                 <div class="panel-body">
-                    {{--错误信息显示区域--}}
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <strong>请检查您输入的资料!</strong>
-                            <br><br>
-                            @foreach ($errors->all() as $error)
-                                <ul>
-                                    <li>{{$error}}</li>
-                                </ul>
-                            @endforeach
-                        </div>
-                    @endif
+                    @include('errors.list')
                     {{--建立新task 表单--}}
-                    {!! Form::open(['url'=>'/create','class'=>'form-horizontal']) !!}
+                    {!! Form::open(['url'=>'/tasks','class'=>'form-horizontal']) !!}
                         <div class="form-group">
                             {!! Form::label('task-name','任务名称', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-6">
@@ -87,15 +76,21 @@
                                     @if (!$task->done)
                                         {{--完成task按钮--}}
                                         <form action="" method="POST" class="form-inline">
-                                            <button type="submit" class="btn btn-success">
+                                            <button type="submit" class="btn-xs btn-success">
                                                 <i class="fa fa-check"></i>完成
                                             </button>
                                         </form>
                                     @endif
                                     {{--删除task按钮--}}
                                     <form action="" method="POST" class="form-inline">
-                                        <button type="submit" class="btn btn-danger">
+                                        <button type="submit" class="btn-xs btn-danger">
                                             <i class="fa fa-trash"></i>删除
+                                        </button>
+                                    </form>
+                                    {{--修改task按钮--}}
+                                    <form action="" method="POST" class="form-inline">
+                                        <button type="submit" class="btn-xs btn-primary">
+                                            <i class="fa fa-cog" aria-hidden="true"></i>修改
                                         </button>
                                     </form>
                                 </td>
