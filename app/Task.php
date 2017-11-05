@@ -10,5 +10,6 @@ class Task extends Model
     protected $fillable = [
         'name',
         'done',
+        'intro',
     ];
 }

@@ -22,11 +22,17 @@
                     </div>
 
                     {{--建立新task 表单--}}
-                    <form action="" method="POST" class="form-horizontal">
+                    {!! Form::open(['url'=>'/create','class'=>'form-horizontal']) !!}
                         <div class="form-group">
-                            <label for="task-name" class="col-sm-3 control-label">Task</label>
+                            {!! Form::label('task-name','Task', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-6">
-                                <input type="text" name="name" id="task-name" class="form-control" value="">
+                                {!! Form::text('name',null , ['class' => 'form-control']) !!}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('intro','Intro', ['class' => 'col-sm-3 control-label']) !!}
+                            <div class="col-sm-6">
+                                {!! Form::text('intro',null , ['class' => 'form-control']) !!}
                             </div>
                         </div>
                         {{--建立新task按钮--}}
@@ -37,7 +43,7 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    {!! Form::close() !!}
                 </div>
             </div>
             {{--Task清单--}}
