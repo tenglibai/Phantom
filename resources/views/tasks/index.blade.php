@@ -24,15 +24,21 @@
                     {{--建立新task 表单--}}
                     {!! Form::open(['url'=>'/create','class'=>'form-horizontal']) !!}
                         <div class="form-group">
-                            {!! Form::label('task-name','Task', ['class' => 'col-sm-3 control-label']) !!}
+                            {!! Form::label('task-name','任务名称', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-6">
                                 {!! Form::text('name',null , ['class' => 'form-control']) !!}
                             </div>
                         </div>
                         <div class="form-group">
-                            {!! Form::label('intro','Intro', ['class' => 'col-sm-3 control-label']) !!}
+                            {!! Form::label('intro','任务简介', ['class' => 'col-sm-3 control-label']) !!}
                             <div class="col-sm-6">
                                 {!! Form::text('intro',null , ['class' => 'form-control']) !!}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('intro','过期时间', ['class' => 'col-sm-3 control-label']) !!}
+                            <div class="col-sm-6">
+                                {!! Form::date('expire_at', date('Y-m-d H:i'), ['class' => 'form-control']) !!}
                             </div>
                         </div>
                         {{--建立新task按钮--}}
@@ -55,15 +61,26 @@
                     <table class="table table-striped task-table">
                         <thead>
                         <tr>
-                            <th>Task</th>
+                            <th>任务名称</th>
+                            <th>任务简介</th>
+                            <th>过期时间</th>
                             <th width="200"></th>
                         </tr>
                         </thead>
                         <tbody>
+
                         @foreach ($tasks as $task)
                             <tr>
                                 <td class="table-text">
                                     <div class="{{($task->done) ? 'check' : ''}}">{{$task->name}}</div>
+                                </td>
+                                <td class="table-text">
+                                    <div class="{{($task->done) ? 'check' : ''}}">{{$task->intro}}</div>
+                                </td>
+                                <td class="table-text">
+                                    <div class="{{($task->done) ? 'check' : ''}}">
+                                        {{$task->leftTimeToExpire()}}
+                                    </div>
                                 </td>
                                 <td>
                                     @if (!$task->done)
