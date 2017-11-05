@@ -11,16 +11,17 @@
                 </div>
                 <div class="panel-body">
                     {{--错误信息显示区域--}}
-                    <div class="alert alert-danger">
-                        <strong>请检查您输入的资料!</strong>
-                        <br><br>
-                        <ul>
-                            <li>错误信息1</li>
-                            <li>错误信息2</li>
-                            <li>错误信息3</li>
-                        </ul>
-                    </div>
-
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <strong>请检查您输入的资料!</strong>
+                            <br><br>
+                            @foreach ($errors->all() as $error)
+                                <ul>
+                                    <li>{{$error}}</li>
+                                </ul>
+                            @endforeach
+                        </div>
+                    @endif
                     {{--建立新task 表单--}}
                     {!! Form::open(['url'=>'/create','class'=>'form-horizontal']) !!}
                         <div class="form-group">
